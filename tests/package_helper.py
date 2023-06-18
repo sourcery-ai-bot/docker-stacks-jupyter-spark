@@ -116,7 +116,7 @@ class CondaPackageHelper:
         # Filtering packages installed through pip in this case it's a dict {'pip': ['toree==0.3.0']}
         # Since we only manage packages installed through mamba here
         dependencies = filter(lambda x: isinstance(x, str), dependencies)
-        packages_dict: dict[str, set[str]] = dict()
+        packages_dict: dict[str, set[str]] = {}
         for split in map(lambda x: re.split("=?=", x), dependencies):
             # default values
             package = split[0]

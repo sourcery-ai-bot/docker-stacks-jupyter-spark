@@ -14,7 +14,7 @@ runtime_dir = Path("/home/") / os.environ["NB_USER"] / ".local/share/jupyter/run
 json_file = next(runtime_dir.glob("*.json"))
 
 url = json.loads(json_file.read_bytes())["url"]
-url = url + "api"
+url = f"{url}api"
 
 r = requests.get(url, verify=False)  # request without SSL verification
 r.raise_for_status()

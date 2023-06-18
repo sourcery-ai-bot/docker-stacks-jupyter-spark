@@ -17,7 +17,7 @@ from tagging.manifests import ManifestHeader, ManifestInterface
 LOGGER = logging.getLogger(__name__)
 
 # This would actually be manifest creation timestamp
-BUILD_TIMESTAMP = datetime.datetime.utcnow().isoformat()[:-7] + "Z"
+BUILD_TIMESTAMP = f"{datetime.datetime.utcnow().isoformat()[:-7]}Z"
 MARKDOWN_LINE_BREAK = "<br />"
 
 
@@ -85,7 +85,8 @@ def write_manifest(
     with DockerRunner(image) as container:
         tags_prefix = get_platform()
         all_tags = [
-            tags_prefix + "-" + tagger.tag_value(container) for tagger in taggers
+            f"{tags_prefix}-{tagger.tag_value(container)}"
+            for tagger in taggers
         ]
         write_build_history_line(
             short_image_name, owner, hist_line_dir, filename, all_tags

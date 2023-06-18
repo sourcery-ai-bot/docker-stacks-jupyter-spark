@@ -153,7 +153,7 @@ def _check_import_packages(
             check_function(package_helper, package)
         except AssertionError as err:
             failures[package] = err
-    if len(failures) > 0:
+    if failures:
         raise AssertionError(failures)
 
 

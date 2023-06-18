@@ -19,14 +19,13 @@ THIS_DIR = Path(__file__).parent.resolve()
 )
 def test_nbconvert(container: TrackedContainer, test_file: str) -> None:
     """Check if Spark notebooks can be executed"""
-    host_data_dir = THIS_DIR / "data"
     cont_data_dir = "/home/jovyan/data"
     output_dir = "/tmp"
     conversion_timeout_ms = 600
+    host_data_dir = THIS_DIR / "data"
     LOGGER.info(f"Test that {test_file} notebook can be executed ...")
     command = (
-        "jupyter nbconvert --to markdown "
-        + f"--ExecutePreprocessor.timeout={conversion_timeout_ms} "
+        f"jupyter nbconvert --to markdown --ExecutePreprocessor.timeout={conversion_timeout_ms} "
         + f"--output-dir {output_dir} "
         + f"--execute {cont_data_dir}/{test_file}.ipynb"
     )

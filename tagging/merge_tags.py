@@ -28,7 +28,7 @@ def merge_tags(
     for platform in ALL_PLATFORMS:
         filename = f"{platform}-{short_image_name}.txt"
         tags = (tags_dir / filename).read_text().splitlines()
-        all_tags.update(tag.replace(platform + "-", "") for tag in tags)
+        all_tags.update(tag.replace(f"{platform}-", "") for tag in tags)
 
     LOGGER.info(f"Got tags: {all_tags}")
 
